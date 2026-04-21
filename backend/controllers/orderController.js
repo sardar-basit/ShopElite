@@ -142,6 +142,27 @@ export const updateOrderStatus = asyncHandler(async (req, res) => {
   res.json({ success: true, data: order });
 });
 
+// @desc    Update order payment status (admin)
+// @route   PUT /api/orders/:id/payment-status
+// @access  Admin
+export const updateOrderPaymentStatus = asyncHandler(async (req, res) => {
+  const { isPaid } = req.body;
+  const order = await Order.findById(req.params.id);
+
+  if (!order) {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+
+  order.isPaid = isPaid;
+  if (isPaid && !order.paidAt) {
+    order.paidAt = Date.now();
+  }
+
+  await order.save();
+  res.json({ success: true, data: order });
+});
+
 // @desc    Create Stripe payment intent
 // @route   POST /api/orders/payment-intent
 // @access  Private

@@ -30,7 +30,7 @@ const MockCheckoutForm = ({ shippingAddress, paymentIntentId }) => {
       const orderData = {
         orderItems: formattedItems,
         shippingAddress,
-        paymentMethod: 'stripe-mock',
+        paymentMethod: 'stripe',
         itemsPrice: totalPrice,
         shippingPrice: 0,
         taxPrice: 0,

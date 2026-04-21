@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct, clearProductDetail } from '@/store/slices/productSlice';
 import { addToCart } from '@/store/slices/cartSlice';
+import { useParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import api from '@/lib/axios';
 import StarRating from '@/components/products/StarRating';
@@ -12,7 +13,8 @@ import { ShoppingCart, ShieldCheck, Truck, RefreshCw, Heart } from 'lucide-react
 import { toast } from 'react-hot-toast';
 import Image from 'next/image';
 
-export default function ProductDetail({ params }) {
+export default function ProductDetail() {
+  const params = useParams();
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector((s) => s.products);
   const { isAuthenticated } = useSelector((s) => s.auth);

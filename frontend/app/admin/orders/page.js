@@ -42,6 +42,17 @@ export default function AdminOrders() {
     }
   };
 
+  const handlePaymentStatusUpdate = async (id, isPaidStr) => {
+    try {
+      const isPaid = isPaidStr === 'true';
+      await api.put(`/orders/${id}/payment-status`, { isPaid });
+      toast.success('Payment status updated');
+      fetchOrders();
+    } catch {
+      toast.error('Failed to update payment status');
+    }
+  };
+
   if (loading) return <div className="py-32 flex justify-center"><Spinner size={48} /></div>;
 
   return (
@@ -76,9 +87,16 @@ export default function AdminOrders() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex flex-col gap-1">
-                      <span className={`inline-flex items-center justify-center px-2.5 py-1 text-xs font-bold rounded-full w-max ${order.isPaid ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                        {order.isPaid ? `Paid ` : 'Not Paid'}
-                      </span>
+                      <select
+                        value={order.isPaid.toString()}
+                        onChange={(e) => handlePaymentStatusUpdate(order._id, e.target.value)}
+                        className={`text-xs font-bold px-2.5 py-1 rounded-full border-2 outline-none cursor-pointer w-max appearance-none text-center ${
+                          order.isPaid ? 'border-green-200 bg-green-100 text-green-800' : 'border-red-200 bg-red-100 text-red-800'
+                        }`}
+                      >
+                        <option value="true">Paid</option>
+                        <option value="false">Not Paid</option>
+                      </select>
                       <span className="text-xs text-gray-500 font-medium">
                         {order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Credit Card'}
                       </span>

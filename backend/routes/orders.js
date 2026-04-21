@@ -8,6 +8,7 @@ import {
   createPaymentIntent,
   markOrderPaid,
   getDashboardStats,
+  updateOrderPaymentStatus,
 } from '../controllers/orderController.js';
 import { protect } from '../middleware/auth.js';
 import { adminOnly } from '../middleware/admin.js';
@@ -20,6 +21,7 @@ router.get('/my', protect, getMyOrders);
 router.route('/').post(protect, createOrder).get(protect, adminOnly, getAllOrders);
 router.route('/:id').get(protect, getOrder);
 router.put('/:id/status', protect, adminOnly, updateOrderStatus);
+router.put('/:id/payment-status', protect, adminOnly, updateOrderPaymentStatus);
 router.put('/:id/pay', protect, markOrderPaid);
 
 export default router;
