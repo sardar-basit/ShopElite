@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import { Package } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 export default function RegisterPage() {
@@ -27,48 +26,56 @@ export default function RegisterPage() {
   const onSubmit = async (data) => {
     const res = await dispatch(registerUser(data));
     if (res.meta.requestStatus === 'fulfilled') {
-      toast.success('Account created successfully!');
+      toast.success('Identity Established — Welcome to LUXE');
       router.push('/');
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[70vh]">
-      <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 mt-8 mb-8">
-        <div className="flex justify-center mb-6">
-          <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-            <Package size={24} className="text-white" />
-          </div>
+    <div className="flex items-center justify-center min-h-[85vh] bg-[#F5F5DC] px-4 py-12">
+      <div className="w-full max-w-md bg-white p-10 py-16 border border-[#e8e1d5] shadow-2xl relative overflow-hidden group">
+        
+        {/* Editorial gold accent bar */}
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-[#D4A373]"></div>
+        
+        <div className="text-center mb-16">
+          <span 
+            className="text-5xl font-serif-display font-light tracking-[0.4em] uppercase block mb-4 text-[#3E2C23]"
+          >
+            LUXE
+          </span>
+          <div className="w-12 h-px bg-[#D4A373] mx-auto mb-6"></div>
+          <h2 className="text-[10px] font-black text-[#8B6B4A]/60 uppercase tracking-[0.5em] italic">Member Registration</h2>
         </div>
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">Create an Account</h2>
-        <p className="text-center text-gray-500 mb-8 text-sm">Join us for a premium shopping experience.</p>
 
         {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm font-medium mb-6 text-center border border-red-100">
+          <div className="bg-red-50 text-red-500 p-4 text-[9px] tracking-widest uppercase font-black mb-12 text-center border border-red-100">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
           <Input
-            label="Full Name"
+            label="Full Identity"
             type="text"
-            placeholder="John Doe"
+            placeholder="MARCUS T. ARCHIVAL"
             error={errors.name?.message}
             {...register('name', { required: 'Name is required' })}
+            className="bg-transparent border-[#e8e1d5] text-[#3E2C23] focus:border-[#D4A373]"
           />
           <Input
-            label="Email Address"
+            label="Electronic Mail"
             type="email"
-            placeholder="you@example.com"
+            placeholder="PROCURER@LUXEMAISON.COM"
             error={errors.email?.message}
             {...register('email', { 
               required: 'Email is required',
               pattern: { value: /\S+@\S+\.\S+/, message: 'Invalid email address' }
             })}
+            className="bg-transparent border-[#e8e1d5] text-[#3E2C23] focus:border-[#D4A373]"
           />
           <Input
-            label="Password"
+            label="Secure Passkey"
             type="password"
             placeholder="••••••••"
             error={errors.password?.message}
@@ -76,19 +83,28 @@ export default function RegisterPage() {
               required: 'Password is required',
               minLength: { value: 6, message: 'Must be at least 6 characters' }
             })}
+            className="bg-transparent border-[#e8e1d5] text-[#3E2C23] focus:border-[#D4A373]"
           />
           
-          <Button type="submit" loading={loading} className="mt-6">
-            Create Account
-          </Button>
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className="w-full py-6 bg-[#3E2C23] hover:bg-[#1a1310] text-[#F5F5DC] font-black uppercase tracking-[0.4em] text-[10px] transition-all shadow-xl flex items-center justify-center gap-4"
+          >
+            {loading ? 'Processing —' : 'Register Identity —'}
+          </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-8">
-          Already have an account?{' '}
-          <Link href="/login" className="text-blue-800 font-bold hover:underline">
-            Sign In
+        <p className="text-center text-[9px] uppercase tracking-[0.15em] text-[#8B6B4A]/60 mt-16 font-bold">
+          Already established?{' '}
+          <Link href="/login" className="text-[#D4A373] hover:text-[#3E2C23] transition-colors underline underline-offset-4 decoration-[#D4A373]/30">
+             Sign In
           </Link>
         </p>
+
+        <div className="mt-12 pt-8 border-t border-[#e8e1d5]/50 text-[8px] uppercase tracking-[0.3em] text-[#8B6B4A]/40 text-center">
+            <p>Integrated Global Membership Architecture</p>
+        </div>
       </div>
     </div>
   );

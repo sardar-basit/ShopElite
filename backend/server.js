@@ -17,6 +17,7 @@ import productRoutes from './routes/products.js';
 import orderRoutes from './routes/orders.js';
 import userRoutes from './routes/users.js';
 import reviewRoutes from './routes/reviews.js';
+import settingRoutes from './routes/settings.js';
 
 dotenv.config();
 connectDB();
@@ -119,6 +120,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/settings', settingRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -1,8 +1,8 @@
-# ShopElite - Advanced E-commerce Platform
+# LUXE - Advanced E-commerce Platform
 
-A comprehensive, production-ready full-stack MERN (MongoDB, Express, React, Node.js) application built with Next.js 14 App Router. ShopElite provides a premium shopping experience featuring secure authentication, seamless integration with Stripe for payments, a robust administrative dashboard, and a gorgeous modern UI.
+A comprehensive, production-ready full-stack MERN (MongoDB, Express, React, Node.js) application built with Next.js 14 App Router. LUXE provides a premium shopping experience featuring secure authentication, seamless integration with Stripe for payments, a robust administrative dashboard, and a gorgeous modern UI.
 
-![ShopElite Banner](https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=1200)
+![LUXE Banner](https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=1200)
 
 ## 🚀 Features
 
@@ -37,7 +37,7 @@ A comprehensive, production-ready full-stack MERN (MongoDB, Express, React, Node
 
 ## 🛠️ Getting Started
 
-Follow these instructions to get a local copy of ShopElite running on your machine.
+Follow these instructions to get a local copy of LUXE running on your machine.
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/) (v16.14.0 or higher)

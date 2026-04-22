@@ -4,17 +4,17 @@ import Footer from '@/components/layout/Footer';
 import Providers from './Providers';
 
 export const metadata = {
-  title: 'Advanced E-commerce Store',
-  description: 'Full-stack MERN e-commerce application built with Next.js',
+  title: 'LUXE — Luxury E-commerce',
+  description: 'Premium products, secure payments, and fast delivery worldwide.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col antialiased" style={{ backgroundColor: '#0d0d0d', color: '#f0f0f0' }}>
         <Providers>
           <Navbar />
-          <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col">
+          <main className="flex-1 w-full">
             {children}
           </main>
           <Footer />

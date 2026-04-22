@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import { Package } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 export default function LoginPage() {
@@ -27,7 +26,7 @@ export default function LoginPage() {
   const onSubmit = async (data) => {
     const res = await dispatch(loginUser(data));
     if (res.meta.requestStatus === 'fulfilled') {
-      toast.success('Welcome back!');
+      toast.success('Access Granted — Welcome to LUXE');
       const userPayload = res.payload;
       if (userPayload?.role === 'admin') {
         router.push('/admin/dashboard');
@@ -38,53 +37,65 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[70vh]">
-      <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100">
-        <div className="flex justify-center mb-6">
-          <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-            <Package size={24} className="text-white" />
-          </div>
+    <div className="flex items-center justify-center min-h-[85vh] bg-[#F5F5DC] px-4">
+      <div className="w-full max-w-md bg-white p-10 py-16 border border-[#e8e1d5] shadow-2xl relative overflow-hidden group">
+        
+        {/* Editorial gold accent bar */}
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-[#D4A373]"></div>
+        
+        <div className="text-center mb-16">
+          <span 
+            className="text-5xl font-serif-display font-light tracking-[0.4em] uppercase block mb-4 text-[#3E2C23]"
+          >
+            LUXE
+          </span>
+          <div className="w-12 h-px bg-[#D4A373] mx-auto mb-6"></div>
+          <h2 className="text-[10px] font-black text-[#8B6B4A]/60 uppercase tracking-[0.5em] italic">Member Access Portal</h2>
         </div>
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">Welcome Back</h2>
-        <p className="text-center text-gray-500 mb-8 text-sm">Log in to manage your orders & wishlist.</p>
 
         {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm font-medium mb-6 text-center border border-red-100">
+          <div className="bg-red-50 text-red-500 p-4 text-[9px] tracking-widest uppercase font-black mb-12 text-center border border-red-100">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
           <Input
-            label="Email Address"
+            label="Digital Identifier"
             type="email"
-            placeholder="you@example.com"
+            placeholder="PROCURER@LUXEMAISON.COM"
             error={errors.email?.message}
-            {...register('email', { required: 'Email is required' })}
+            {...register('email', { required: 'Required' })}
+            className="bg-transparent border-[#e8e1d5] text-[#3E2C23] focus:border-[#D4A373]"
           />
           <Input
-            label="Password"
+            label="Secure Credentials"
             type="password"
             placeholder="••••••••"
             error={errors.password?.message}
-            {...register('password', { required: 'Password is required' })}
+            {...register('password', { required: 'Required' })}
+            className="bg-transparent border-[#e8e1d5] text-[#3E2C23] focus:border-[#D4A373]"
           />
           
-          <Button type="submit" loading={loading} className="mt-4">
-            Sign In
-          </Button>
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className="w-full py-6 bg-[#3E2C23] hover:bg-[#1a1310] text-[#F5F5DC] font-black uppercase tracking-[0.4em] text-[10px] transition-all shadow-xl flex items-center justify-center gap-4"
+          >
+            {loading ? 'Authenticating —' : 'Enter Archive —'}
+          </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-8">
-          Don't have an account?{' '}
-          <Link href="/register" className="text-blue-800 font-bold hover:underline">
-            Register now
+        <p className="text-center text-[9px] uppercase tracking-[0.3em] text-[#8B6B4A]/60 mt-16 font-bold">
+          New to the series?{' '}
+          <Link href="/register" className="text-[#D4A373] hover:text-[#3E2C23] transition-colors underline underline-offset-4 decoration-[#D4A373]/30">
+             Request Membership
           </Link>
         </p>
 
-        <div className="mt-6 text-xs text-center text-gray-400">
-          <p>Demo Admin: admin@ecommerce.com / Admin@1234</p>
-          <p>Demo User: user@ecommerce.com / User@1234</p>
+        <div className="mt-12 pt-8 border-t border-[#e8e1d5]/50 text-[8px] uppercase tracking-[0.3em] text-[#8B6B4A]/40 text-center space-y-2">
+          <p>Admin Access: admin@ecommerce.com / Admin@1234</p>
+          <p>Global Authentication Standards Applied</p>
         </div>
       </div>
     </div>
